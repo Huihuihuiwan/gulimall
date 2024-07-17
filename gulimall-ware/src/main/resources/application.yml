@@ -1,0 +1,20 @@
+server:
+  port:8087
+
+# DataSource Config
+spring:
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.56.10:3306/gulimall_wms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+
+
+mybatis-plus:
+#  classpath* 加载自身+引用的其它文件
+#  classpath 加载自身
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+#      实体类上@TableId实现自增
+      id-type: auto
