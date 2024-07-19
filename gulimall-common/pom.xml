@@ -64,7 +64,27 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
             <version>2.2.0.RELEASE</version>
+            <!--
+            手动排除ribbon
+            https://www.cnblogs.com/grey-wolf/p/17902335.html
+            -->
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+                    <groupId>org.springframework.cloud</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+        <!-- openFeign负载均衡由ribbon改为loadbalancer-->
+        <!-- 不加这个依赖会报错：No Feign Client for loadBalancing defined. Did you forget to include spring-cloud-starter-loadbalancer? -->
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-loadbalancer -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+            <version>2.2.0.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

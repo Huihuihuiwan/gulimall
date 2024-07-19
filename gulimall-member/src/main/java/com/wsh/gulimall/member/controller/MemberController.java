@@ -1,16 +1,16 @@
 package com.wsh.gulimall.member.controller;
 
 import com.wsh.gulimall.member.entity.MemberEntity;
+import com.wsh.gulimall.member.feign.CouponFeignService;
 import com.wsh.gulimall.member.service.MemberService;
 import com.wsh.gulimall.utils.PageUtils;
 import com.wsh.gulimall.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Map;
-
-
 
 
 /**
@@ -25,6 +25,20 @@ import java.util.Map;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @Resource
+    private CouponFeignService couponFeignService;
+
+    @RequestMapping("/coupons")
+    public R test() {
+        MemberEntity member = new MemberEntity();
+        member.setNickname("张三");
+
+        R coupons = couponFeignService.memberCoupons();
+        Object o = coupons.get("coupons");
+
+        return R.ok().put("member", member).put("coupons", o);
+    }
 
     /**
      * 列表
