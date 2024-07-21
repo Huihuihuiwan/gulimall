@@ -12,6 +12,16 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+      # 配置中心
+#      config:
+#        group: DEFAULT_GROUP
+#        server-addr: 127.0.0.1:8848
+#        file-extension: properties
+#        enabled: true
+#        refresh-enabled: true
+#  config:
+#    import:
+#      - optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
 
 mybatis-plus:
   #  classpath* 加载自身+引用的其它文件
