@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+# 现在想要实现针对于“http://localhost:88/hello?url=baidu”，
+# 转发到“https://www.baidu.com”，针对于“http://localhost:88/hello?url=qq”的请求，转发到“https://www.qq.com/”
+      routes:
+        - id: baidu_route
+          uri: https://www.baidu.com
+          predicates:
+            - Query=name,baidu
+        - id: qq_route
+          uri: https://www.qq.com
+          predicates:
+            - Query=name,qq
+  application:
+    name: gulimall-gateway
+server:
+  port: 88
